@@ -1,0 +1,37 @@
+[{
+      "nome": "ENGENHARIA (ILHA)",
+      "nivel2": [
+		"",		
+		"OPERAÇÃO - ENG. (ILHA)"		
+      ]
+    },
+	{
+      "nome": "ENGENHARIA (MASTER)",
+      "nivel2": [
+		"",
+		"EQUIPAMENTO - ENG. (MASTER)",
+		"OPERAÇÃO - ENG. (MASTER)",
+		"MONITORAÇÃO DO AR - ENG. (MASTER)",
+	    "SUITE",
+	    "ROTEIRO - ENG. (MASTER)"
+      ]
+    },
+    {
+      "nome": "OPEC (ILHA)",
+      "nivel2": [
+        "",
+		"CONTROLE DE QUALIDADE - OPEC (ILHA)",
+		"OPERAÇÃO - OPEC (ILHA)",
+		"PRAZO - OPEC (ILHA)"
+      ]
+    },
+	{
+      "nome": "OPEC (MASTER)",
+      "nivel2": [
+		"",
+        "CONTROLE DE QUALIDADE - OPEC (MASTER)",
+		"OPERAÇÃO - OPEC (MASTER)",
+		"ROTEIRO - OPEC (MASTER)"
+      ]
+    }
+]

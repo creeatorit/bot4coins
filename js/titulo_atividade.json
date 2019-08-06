@@ -1,0 +1,539 @@
+[{
+      "nome": "Manutenção",
+      "atividade": [
+        "",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Substituição",
+      "atividade": [
+        "",
+		"Caixa de som",
+		"Gravador de DVD/Bluray",
+		"HD",
+		"Memória",
+        "Monitor",
+		"Mouse",
+        "Teclado",
+		"Placa de audio",
+		"Placa mãe",
+		"Placa de vídeo",
+		"Placa de rede",
+		"Processador",
+        "Webcam",
+        "Outro"
+      ]
+    },
+    {
+      "nome": "Active Directory",
+      "atividade": [
+		"",
+		"Criação de usuário",
+		"Inclusão no domínio",
+		"Redefinição de senha",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Acompanhamento de Programação",
+      "atividade": [
+		"",
+		"Ao Vivo"
+      ]
+    },
+    {
+      "nome": "AP ENPS",
+      "atividade": [
+		"",
+		"Criação de usuário",
+		"Instalação",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Impressoras",
+      "atividade": [
+		"",
+		"Instalação",
+		"Substituição de toner",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Office",
+      "atividade": [
+		"",
+		"Configuração Outlook",
+		"Instalação",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Windows",
+      "atividade": [
+		"",
+		"Verificação de inicialização",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Mapeamento de rede",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Sincronização de dados",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Outros",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Televisores",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "-",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Criação de usuário",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Suporte remoto",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Ar condicionado",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Cabeamento estruturado",
+      "atividade": [
+        "",
+		"Inclusão de novo cabo",
+		"Organização"
+      ]
+    },
+	{
+      "nome": "Comunicação",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Configuração",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Contribuição",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Distribuição",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Roteamento",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Sistema de Modulação dos Canais Internos",
+      "atividade": [
+        "",
+		"Cabeamento",
+		"Configuração",
+		"Medição",
+		"Reset",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Ilha Mac (Central)",
+      "atividade": [
+        "",
+        "Conexão FCP",
+        "Lentidão / Travamento",
+        "Outros"
+      ]
+    },
+	{
+      "nome": "Mux TV Digital",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Transmissão Mídias Sociais",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Uplink",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Câmera",
+      "atividade": [
+        "",
+        "Câmera 1",
+        "Câmera 2",
+        "Câmera 3",
+        "Câmera 4",
+        "Outros"
+      ]
+    },
+	{
+      "nome": "Iluminação",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Microfone",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Ponto eletrônico",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Retorno de audio",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Retorno de vídeo",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Teleprompter",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Adobe",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Conexão Harris",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Finalcut",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Outros",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Desenvolvimento Aplicação / Script",
+      "atividade": [
+        "",
+		"C#",
+		"Shell Script",
+		"HTML/PHP",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Manutenção Check in",
+      "atividade": [
+        "",
+        "Câmera",
+		"Cabo audio/vídeo",
+		"Luminária",
+		"Mochilink",
+		"Tripé",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Multiviewer",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Painel Icon Master",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Servidor comercial",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "VSN",
+      "atividade": [
+        "-"
+      ]
+    },
+	{
+      "nome": "Servidores",
+      "atividade": [
+		"",
+		"- CTA -",
+		"CTAASP01 (ASPERA)",
+		"CTAFWL01 (FIREWALL)",
+        "CTASRV01 (AP MAIN)",
+		"CTASRV02 (AP BACKUP)",
+		"CTASRV03 (AD 01)",
+		"CTASRV04 (AD 02)",
+		"CTASRV05 (TELEMETRIA)",
+		"CTAMOS01 (INSCRIBER MOS)",
+		"CTANTSUL01 (NTSUL)",
+		"FCP3A",
+		"FCP4A",
+		"HDX3601-1A (HARRIS 1)",
+		"HDX3601-2A (HARRIS 2)",
+		"HDX3601-1B",
+		"HDX3601-2B",
+		"HDX3801-3B",
+		"MGX",
+		"MSTSRV01",
+		"MSTSRV02",
+		"MSTSRV03",
+		"MSTSRV04",
+		"STORAGE JORNALISMO",
+		"STORAGE OPEC",
+		"STORAGE PROGRAMAÇÃO GRÁFICA",
+		"SRV Live-U",
+		"SRV Soliton",
+		"",
+		"- LDA -",
+		"",
+		"LDAFLW01",
+		"LDASRV01",
+		"",
+		"- FOZ -",
+		"",
+		"FOZFWL01"
+      ]
+    },
+	{
+      "nome": "Switch",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Storage Harris",
+      "atividade": [
+		"",
+		"Liberação de acesso",
+        "Substituição de disco"
+      ]
+    },
+	{
+      "nome": "Storage Jornalismo Brutas",
+      "atividade": [
+		"",
+        "Substituição de disco"
+      ]
+    },
+	{
+      "nome": "Storage Opec",
+      "atividade": [
+		"",
+        "Substituição de disco"
+      ]
+    },
+	{
+      "nome": "Storage Programação Gráfica",
+      "atividade": [
+		"",
+		"Configuração",
+		"Compartilhamento",
+		"Criação de usuário",
+        "Substituição de disco"
+      ]
+    },
+	{
+      "nome": "Audio",
+      "atividade": [
+		"",
+		"Hibrida",
+		"Live-U",
+		"Mesa de audio",
+        "Microfone",
+		"Painel de efeitos 360",
+		"PC de audio"
+      ]
+    },
+	{
+      "nome": "GC",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Ilha Mac",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "PC Mídias Sociais",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Playout",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Switcher de vídeo",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Waveform",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "WhatsTV",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Nobreak",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Rohde & Schwarz",
+	  "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Toshiba",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Encoder",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Modulador",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Monitoração",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Mux",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Receptor de satélite",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Sistema de Pressurização",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "SSPA",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Telemetria",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "UP converter",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "Ilha de edição",
+      "atividade": [
+		"-"
+      ]
+    },
+	{
+      "nome": "-",
+      "atividade": [
+		"-"
+      ]
+    }
+	]

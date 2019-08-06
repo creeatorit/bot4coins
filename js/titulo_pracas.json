@@ -1,0 +1,46 @@
+[{
+      "nome": "TV - CIDADE",
+      "localidade": [
+        "Londrina"
+      ]
+    },
+    {
+      "nome": "TV - Guara",
+      "localidade": [
+		"",
+        "Francisco Beltrão",
+        "Ponta Grossa"
+      ]
+    },
+	{
+      "nome": "TV - Iguaçu",
+      "localidade": [
+        "Curitiba"
+      ]
+    },
+	{
+      "nome": "TV - Naipi",
+      "localidade": [
+		"",
+        "Cascavel",
+		"Foz do Iguaçu"
+      ]
+    },
+	{
+      "nome": "TV - Tibagi",
+      "localidade": [
+		"",
+        "Apucarana",
+		"Maringá"
+      ]
+    },
+	{
+      "nome": "Massa FM",
+      "localidade": [
+		"",
+        "Curitiba",
+		"Foz do Iguaçu",
+		"Londrina",
+		"Maringá"
+      ]
+    }]

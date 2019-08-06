@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  #ErrorDocument 401 /401.php
+  #ErrorDocument 403 /403.php
+  #ErrorDocument 404 /404.php
+  #ErrorDocument 500 /500.php
+
+  # ALL USERS
+  RewriteRule ^dashboard/?$ dashboard.php [NC,L]
+  RewriteRule ^depositos/?$ depositos.php [NC,L]
+  RewriteRule ^login/?$ login.php [NC,L]
+  RewriteRule ^member-profile/?$ member-profile.php [NC,L]
+  RewriteRule ^register/?$ register.php [NC,L]
+  RewriteRule ^saques/?$ saques.php [NC,L]
+  RewriteRule ^meu-plano/?$ meu-plano.php [NC,L]
+  RewriteRule ^faq/?$ faq.php [NC,L]
+  RewriteRule ^includes/sair/?$ includes/logout.php [NC,L]
+  RewriteRule ^includes/valida-usuario/?$ includes/validation.php [NC,L]
+  
+  # ADMIN
+  RewriteRule ^dashboard-admin/?$ dashboard-admin.php [NC,L]
+  RewriteRule ^members-admin/?$ members-admin.php [NC,L]
+  
+
+</IfModule>

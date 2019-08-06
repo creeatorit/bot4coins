@@ -1,0 +1,61 @@
+[{
+      "nome": "Administrativo (Engenharia)",
+      "subcategoria": [
+		"",		
+		"Almoxarifado",		
+		"Cadastro de Atividades",
+		"Prestação de Contas",
+		"Solicitação de Compras",
+		"Outros"		
+      ]
+    },
+	{
+      "nome": "Atendimento ao usuário (Interno)",
+      "subcategoria": [
+		"",
+		"Liberação de acesso (Internet)",
+		"Jornalismo",
+		"Massa News",
+        "Hardware",
+		"Software",
+		"Programação Artística"
+      ]
+    },
+    {
+      "nome": "Atendimento ao usuário (Externo)",
+      "subcategoria": [
+        "",
+		"Aspera",
+		"CAT"
+      ]
+    },
+	{
+      "nome": "Atendimento a operação de TV",
+      "subcategoria": [
+		"",
+        "Central Técnica",
+		"Estúdio",
+		"Ilhas de edição",
+		"Laboratório",
+		"Master",
+		"Sala de servidores",
+		"Suite",
+		"Transmissor",
+		"Up Link",
+		"Videografia",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Atendimento a operação de Rádio",
+      "subcategoria": [
+        "",
+		"Central Técnica Rádio",
+		"Estúdio Curitiba",
+		"Estúdio Rede",
+		"Gravadora",
+		"Gerador",
+		"Transmissor rádio"
+      ]
+    }
+]

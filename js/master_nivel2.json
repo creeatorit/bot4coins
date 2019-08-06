@@ -1,0 +1,141 @@
+[{
+      "nome": "OPERAÇÃO - ENG. (ILHA)",
+      "nivel3": [
+		"",
+		"FALHA NO ASPERA",
+		"FALHA SERVIDOR OPEC STORAGE",
+		"ILHA INOPERANTE"
+      ]
+    },
+	{
+      "nome": "EQUIPAMENTO - ENG. (MASTER)",
+      "nivel3": [
+		"",
+		"ALARME FIBRA",
+		"AR CONDICIONADO",
+		"BLACK OU FADE",
+		"DIGITALIZAÇÃO FIBRA",
+		"DIGITALIZAÇÃO SAT LOCAL",
+		"DIGITALIZAÇÃO SAT SBT",
+		"FALHA EXIBIDOR",
+		"FALTA DE ENERGIA",
+		"MONITORAÇÃO",
+		"PROBLEMA NA MESA",
+		"QUEDA DO SERVIDOR DE VÍDEO",
+		"QUEDA CANAL DE VOZ",
+		"RECEPÇÃO DE SINAL",
+		"RECEPÇÃO DE SAT",
+		"TRAVAMENTO DO RELÓGIO MULTIVIEWER"
+      ]
+    },
+    {
+      "nome": "OPERAÇÃO - ENG. (MASTER)",
+      "nivel3": [
+        "",
+		"BLACK OU FADE - ENG. (MASTER)",
+		"BOTONEIRA INOPERANTE - ENG. (MASTER)",
+		"EDIÇÃO INOPERANTE - ENG. (MASTER)",
+		"EXIBIDOR INOPERANTE - ENG. (MASTER)",
+		"INGEST INOPERANTE - ENG. (MASTER)",
+		"MESA INOPERANTE - ENG. (MASTER)"
+      ]
+    },
+		{
+      "nome": "MONITORAÇÃO DO AR - ENG. (MASTER)",
+      "nivel3": [
+        "",
+		"QUEDA DO CLOSED CAPTION",
+		"QUEDA DIGITAL ÁUDIO OU VÍDEO",
+		"QUEDA SAT ÁUDIO OU VÍDEO",
+		"QUEDA TX ANALÓGICO ÁUDIO OU VÍDEO",
+		"TRAVAMENTO SINAL DO SAT DE RETORNO"
+      ]
+    },
+    {
+      "nome": "SUITE",
+      "nivel3": [
+        "",
+		"ÁUDIO",
+		"VÍDEO",
+		"ÁUDIO/VÍDEO",
+		"CÂMERA",
+		"FALTA DE ENGERGIA"
+      ]
+    },
+	{
+      "nome": "ROTEIRO - ENG. (MASTER)",
+      "nivel3": [
+        "",
+		"INSERÇÃO PLAYLIST",
+		"NÃO CARREGAMENTO DE ROTEIRO",
+		"NÃO RECONHECIMENTO DO MATERIAL INGESTADO",
+		"SINCRONISMO PLAYLIST"
+      ]
+    },
+	{
+      "nome": "CONTROLE DE QUALIDADE - OPEC (ILHA)",
+      "nivel3": [
+        "",
+		"ÁUDIO",
+		"BLACK OU FADE",
+		"DURAÇÃO",
+		"FORMATO",
+		"MATERIAL CORROMPIDO",
+		"MATERIAL SEM CENSURA OU ADVERTÊNCIA OBRIGATÓRIA",
+		"VÍDEO"
+      ]
+    },
+	{
+      "nome": "OPERAÇÃO - OPEC (ILHA)",
+      "nivel3": [
+        "",
+		"MATERIAL ERRADO",
+		"OPEC",
+		"TÍTULO ERRADO"
+      ]
+    },
+	{
+      "nome": "PRAZO - OPEC (ILHA)",
+      "nivel3": [
+        "",
+		"OUTROS"
+      ]
+    },
+	{
+      "nome": "CONTROLE DE QUALIDADE - OPEC (MASTER)",
+      "nivel3": [
+        "",
+		"ÁUDIO",
+		"BLACK OU FADE",
+		"DURAÇÃO",
+		"FORMATO",
+		"VÍDEO"
+      ]
+    },
+	{
+      "nome": "OPERAÇÃO - OPEC (MASTER)",
+      "nivel3": [
+        "",
+		"CORTE ERRADO",
+		"ESTOURO DE PROGRAMAS LOCAIS",
+		"FALHA OPERACIONAL DO SBT",
+		"INSERÇÃO CALHAU",
+		"INSERÇÃO CHAMADA",
+		"INSERÇÃO INCORRETA"
+      ]
+    },
+	{
+      "nome": "ROTEIRO - OPEC (MASTER)",
+      "nivel3": [
+        "",
+		"CHOQUE CONCORRÊNCIA",
+		"CONFLITO",
+		"DURAÇÃO",
+		"QUEDA DO SISTEMA CPW",
+		"QUEDA DO SISTEMA SCTV",
+		"TEMPO DIVERGENTE",
+		"TÍTULO",
+		"VENCIDO"
+      ]
+    }
+]

@@ -1,0 +1,280 @@
+[{
+      "nome": "Almoxarifado",
+      "tipoatividade": [
+		"",
+		"-"
+      ]
+    },
+	{
+      "nome": "Cadastro de Atividades",
+      "tipoatividade": [
+		"",
+		"-"
+      ]
+    },
+	{
+      "nome": "Prestação de Contas",
+      "tipoatividade": [
+		"",
+		"-"
+      ]
+    },
+	{
+      "nome": "Solicitação de Compras",
+      "tipoatividade": [
+		"",
+		"-"
+      ]
+    },
+	{
+      "nome": "Outros",
+      "tipoatividade": [
+		"",
+		"-"
+      ]
+    },
+	{
+      "nome": "Hardware",
+      "tipoatividade": [
+		"",
+		"Manutenção",
+		"Substituição"
+      ]
+    },
+    {
+      "nome": "Software",
+      "tipoatividade": [
+        "",
+		"Active Directory",
+		"AP ENPS",
+		"Impressoras",
+		"Office",
+		"Windows",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Programação Artística",
+      "tipoatividade": [
+        "",
+		"Mapeamento de rede",
+		"Sincronização de dados"
+      ]
+    },
+	{
+      "nome": "Liberação de acesso (Internet)",
+      "tipoatividade": [
+        "",
+		"-"
+      ]
+    },
+	{
+      "nome": "Jornalismo",
+      "tipoatividade": [
+        "",
+		"Televisores",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Massa News",
+      "tipoatividade": [
+        "",
+		"Televisores",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Aspera",
+      "tipoatividade": [
+        "",
+		"Criação de usuário",
+		"Suporte remoto"
+      ]
+    },
+	{
+      "nome": "CAT",
+      "tipoatividade": [
+        "",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Central Técnica",
+      "tipoatividade": [
+        "",
+		"Ar condicionado",
+		"Cabeamento estruturado",
+		"Comunicação",
+		"Configuração",
+		"Contribuição",
+		"Distribuição",
+		"Ilha Mac (Central)",
+		"Mux TV Digital",
+		"Roteamento",
+		"Sistema de Modulação dos Canais Internos",
+		"Transmissão Mídias Sociais",
+		"Uplink",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Estúdio",
+      "tipoatividade": [
+        "",
+		"Ar condicionado",
+		"Câmera",
+		"Cabeamento estruturado",
+		"Iluminação",
+		"Microfone",
+		"Ponto eletrônico",
+		"Retorno de audio",
+		"Retorno de vídeo",
+		"Teleprompter",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Ilhas de edição",
+      "tipoatividade": [
+        "",
+		"Adobe",
+		"Ar condicionado",
+		"Conexão Harris",
+		"Finalcut",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Laboratório",
+      "tipoatividade": [
+        "",
+		"Ar condicionado",
+		"Desenvolvimento Aplicação / Script",
+		"Manutenção Check in",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Master",
+      "tipoatividade": [
+        "",
+		"Ar condicionado",
+		"Comunicação",
+		"Multiviewer",
+		"Painel Icon Master",
+		"Servidor comercial",
+		"VSN",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Sala de servidores",
+      "tipoatividade": [
+        "",
+		"Ar condicionado",
+		"Servidores",
+		"Storage Harris",
+		"Storage Jornalismo Brutas",
+		"Storage Opec",
+		"Storage Programação Gráfica",
+		"Switch"
+      ]
+    },
+	{
+      "nome": "Suite",
+      "tipoatividade": [
+        "",
+		"Acompanhamento de Programação",
+		"Ar condicionado",
+		"AP ENPS",
+		"Audio",
+		"Comunicação",
+		"GC",
+		"Ilha Mac",
+		"PC Mídias Sociais",
+		"Playout",
+		"Switcher de vídeo",
+		"Teleprompter",
+		"Waveform",
+		"WhatsTV"
+      ]
+    },
+	{
+      "nome": "Transmissor",
+      "tipoatividade": [
+        "",
+		"Ar condicionado",
+		"Nobreak",
+		"Rohde & Schwarz",
+		"Toshiba",
+		"Outros"
+      ]
+    },
+	{
+      "nome": "Up Link",
+      "tipoatividade": [
+        "",
+		"Ar condicionado",
+		"Encoder",
+		"Modulador",
+		"Monitoração",
+		"Mux",
+		"Receptor de satélite",
+		"Sistema de Pressurização",
+		"SSPA",
+		"Telemetria",
+		"UP converter"
+      ]
+    },
+	{
+      "nome": "Videografia",
+      "tipoatividade": [
+        "",
+		"Ar condicionado",
+		"Ilha de edição"
+      ]
+    },
+	{
+      "nome": "Central Técnica Rádio",
+      "tipoatividade": [
+        "",
+        "-"
+      ]
+    },
+	{
+      "nome": "Estúdio Curitiba",
+      "tipoatividade": [
+        "",
+        "-"
+      ]
+    },
+	{
+      "nome": "Estúdio Rede",
+      "tipoatividade": [
+        "",
+        "-"
+      ]
+    },
+	{
+      "nome": "Gravadora",
+      "tipoatividade": [
+        "",
+        "-"
+      ]
+    },
+	{
+      "nome": "Gerador",
+      "tipoatividade": [
+        "",
+        "-"
+      ]
+    },
+	{
+      "nome": "Transmissor rádio",
+      "tipoatividade": [
+        "",
+        "-"
+      ]
+    }
+]

@@ -1,0 +1,147 @@
+[{
+      "nome": "TV - CIDADE",
+      "transf_setor": [
+		"",		
+		"CABINE DE LOCUÇÃO",
+		"CENTRAL TÉCNICA",
+		"DEPÓSITO ENGENHARIA",
+		"ESTÚDIO 1",
+		"GRUPO GERADOR",
+		"ILHAS DE EDIÇÃO",
+		"JORNALISMO",
+		"LABORATÓRIO TÉCNICO",
+		"MASTER",
+		"SALA TRANSMISSOR",
+		"SUITE"
+      ]
+    },
+	{
+      "nome": "TV - GUARA (PG)",
+      "transf_setor": [
+		"",
+		"CENTRAL TÉCNICA",
+		"DEPÓSITO ENGENHARIA",
+		"ESTÚDIO 1",
+		"GRUPO GERADOR",
+		"GRUPO GERADOR 2 (PRÉDIO VILA VELHA)",
+		"ILHAS DE EDIÇÃO",
+		"JORNALISMO",
+		"LABORATÓRIO TÉCNICO",
+		"SALA TRANSMISSOR",
+		"SUITE"
+      ]
+    },
+    {
+      "nome": "TV - GUARA (FB)",
+      "transf_setor": [
+        "",
+		"CENTRAL TÉCNICA",
+		"ESTÚDIO 1",
+		"ILHAS DE EDIÇÃO",
+		"JORNALISMO",
+		"LABORATÓRIO TÉCNICO",
+		"MASTER",
+		"SALA TRANSMISSOR",
+		"SUITE"
+      ]
+    },
+	{
+      "nome": "TV - IGUAÇU",
+      "transf_setor": [
+		"",
+        "CABINE DE LOCUÇÃO",
+		"CENTRAL TÉCNICA",
+		"DEPÓSITO ENGENHARIA",
+		"ESTÚDIO 1",
+		"ESTÚDIO 2",
+		"ESTÚDIO 3",
+		"GRUPO GERADOR",
+		"ILHA OPEC",
+		"ILHAS DE EDIÇÃO",
+		"JORNALISMO",
+		"LABORATÓRIO TÉCNICO",
+		"LABORATÓRIO DE RF",
+		"MASTER",
+		"SALA DE EQUIPAMENTOS / CHECK-IN EXTERNA",
+		"SALA DE SERVIDORES",
+		"SALADA MISTA",
+		"SHELTER",
+		"SUBESTAÇÃO",
+		"SALA TRANSMISSOR",
+		"SUITE",
+		"VIDEOGRAFIA"
+      ]
+    },
+    {
+      "nome": "TV - NAIPI (FOZ)",
+      "transf_setor": [
+        "",
+		"CENTRAL TÉCNICA",
+		"DEPÓSITO ENGENHARIA",
+		"ESTÚDIO 1",
+		"GRUPO GERADOR",
+		"ILHA OPEC",
+		"ILHAS DE EDIÇÃO",
+		"JORNALISMO",
+		"LABORATÓRIO TÉCNICO",
+		"MASTER",
+		"SALA DE EQUIPAMENTOS / CHECK-IN EXTERNA",
+		"SALA TRANSMISSOR",
+		"SUITE"
+      ]
+    },
+    {
+      "nome": "TV - NAIPI (CSC)",
+      "transf_setor": [
+        "",
+		"GRUPO GERADOR",
+		"ILHAS DE EDIÇÃO",
+		"JORNALISMO",
+		"LABORATÓRIO TÉCNICO",
+		"SALA TRANSMISSOR"
+      ]
+    },
+    {
+      "nome": "TV - TIBAGI (MGA)",
+      "transf_setor": [
+        "",
+		"CABINE DE LOCUÇÃO",
+		"CENTRAL TÉCNICA",
+		"DEPÓSITO ENGENHARIA",
+		"ESTÚDIO 1",
+		"GRUPO GERADOR",
+		"ILHAS DE EDIÇÃO",
+		"JORNALISMO",
+		"LABORATÓRIO TÉCNICO",
+		"SALA TRANSMISSOR",
+		"SUITE"
+      ]
+    },
+    {
+      "nome": "TV - TIBAGI (APU)",
+      "transf_setor": [
+        "",
+		"DEPÓSITO ENGENHARIA",
+		"ESTÚDIO 1",
+		"GRUPO GERADOR",
+		"LABORATÓRIO TÉCNICO",
+		"LABORATÓRIO DE RF",
+		"MASTER",
+		"SALA TRANSMISSOR"
+      ]
+    },
+    {
+      "nome": "MASSA FM",
+      "transf_setor": [
+        "",
+		"CENTRAL TÉCNICA",
+		"ESTÚDIO 1 CTA",
+		"ESTÚDIO 2 REDE",
+		"GRAVADORA",
+		"GRUPO GERADOR ESTÚDIO",
+		"GRUPO GERADOR TRANSMISSOR",
+		"ILHA OPEC",
+		"SALA TRANSMISSOR"
+      ]
+    }
+]
