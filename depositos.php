@@ -47,7 +47,9 @@
                               $valor = '<font size="2"><strong>' . $row['valor'] . '</strong></font>';
                           }
                           if ($row['boleto']) {
-                              $boleto = '<font size="2">' . $row['boleto'] . '</font>';
+                              $boleto = '<font size="2"><a href="assets/files/boletos/' . $row['boleto'] . '" target="_blank" class="btn-link">Visualizar boleto</a></font>';
+                          } else {
+                            $boleto = 'Não encontrado';
                           }
                           if ($row['dt_vencimento']) {
                               $vencimento = '<font size="2">' . $row['dt_vencimento'] . '</font>';

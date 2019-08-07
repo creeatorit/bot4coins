@@ -141,6 +141,7 @@ $exibirModal = true;
                     <ul class="nav side-menu">
                         <li><a href="dashboard-admin"><i class="icon-home icons"></i> <span>Página Inicial</span></a></li> 
                         <li><a href="members-admin"><i class="icon-people icons"></i> <span>Nossos Membros</span></a></li>  
+                        <li><a href="depositos-admin"><i class="icon-layers icons"></i> <span>Depositos pendentes</span></a></li>   
                         <li><a href="depositos"><i class="icon-layers icons"></i> <span>Pagamentos Recebidos</span></a></li>     
                         <li><a href="saques"><i class="icon-refresh icons"></i> <span>Saques Efetuados</span></a></li>                        
                         <li><a href="meu-plano"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Nosso Financeiro</span></a></li>
