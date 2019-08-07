@@ -222,12 +222,6 @@ if($q->rowCount() > 0) {
                       <form class="form-horizontal" action="member-profile" method="POST">
                         <fieldset>
                           <div class="form-group">
-                            <label for="inputPhoto" class="col-lg-12 control-label">Foto do Perfil</label>
-                            <div class="col-lg-12">
-                              <input class="form-control input-type-1" id="foto" name="foto" type="file" required>
-                            </div>
-                          </div>
-                          <div class="form-group">
                             <label for="inputFirstName" class="col-lg-12 control-label">Primeiro nome</label>
                             <div class="col-lg-12">
                               <input class="form-control input-type-1" id="nome" name="nome" value="<?php echo $data['nome']; ?>" type="text" autocomplete="off" onChange="this.value=this.value.toUpperCase()" readonly>
