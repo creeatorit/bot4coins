@@ -21,7 +21,6 @@
   # ADMIN
   RewriteRule ^dashboard-admin/?$ dashboard-admin.php [NC,L]
   RewriteRule ^members-admin/?$ members-admin.php [NC,L]
-  RewriteRule ^depositos-admin/?$ depositos-admin.php [NC,L]
   
 
 </IfModule>

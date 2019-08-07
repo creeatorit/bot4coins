@@ -1,6 +1,50 @@
 <!-- Chama o cabeçalho e o menu -->
 <?php include("includes/header.php");?>
          
+          <?php 
+            if(!empty($_POST['dt_vencimento'])) {
+                        
+              $dt_vencimento = implode('-',array_reverse(explode('/',$_POST['dt_vencimento'])));
+
+              // $valor = str_replace(',','.', str_replace('.','', $valor));
+              
+              // Verifica se o boleto foi enviado
+              if(count($_FILES['boleto']) > 0) {
+
+                if($_FILES['boleto']['type'] == 'application/pdf') {
+                  $tmpname = md5(time() . rand(0, 999)) . '.pdf';
+                  $destino = 'assets/files/boletos/';
+                  
+                  if (!is_dir($destino)){       // Se a pasta não existir cria     
+                    mkdir($destino, 0777, true);
+                  }
+                  
+                  if(move_uploaded_file($_FILES['boleto']['tmp_name'], $destino.$tmpname)) {
+                    $pdo = Banco::conectar();
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                    $sql = "UPDATE depositos set dt_vencimento = :vencimento, boleto = :boleto, status = '2'  WHERE id = :id";
+                    $q = $pdo->prepare($sql);
+                    $q->bindValue(':vencimento', $dt_vencimento);
+                    $q->bindValue(':boleto', $tmpname);
+                    $q->bindValue(':id', $_POST['id']);
+                    $q->execute();
+                    if($q->rowCount() > 0) {
+                      echo "<script>alert('BOLETO GERADO COM SUCESSO!');</script>";
+                      echo "<script>window.location.href = 'window.location.href</script>";
+                    } else {
+                      echo "<script>alert('OOPS! OCORREU ALGUEM ERRO PARA GERAR O BOLETO, TENTE NOVAMENTE.');</script>";
+                    }
+                    Banco::desconectar();
+                  }
+
+               }
+                
+              }
+              
+
+            }
+          ?>
           <!-- PAGE CONTENT -->
           <div id="crypto_address" class="right_col crypto_address" role="main">
             <div class="spacer_30"></div>
@@ -9,7 +53,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-7 col-sm-6 col-xs-12 text-left">
-                          <h3>Solicitações de Depósitos</h3>
+                          <h3>Depósitos pendentes</h3>
                         </div>
                     </div>
                 </div>
@@ -22,73 +66,44 @@
                   <table class="table table-striped table-hover no-margin">
                     <thead>
                       <tr>
-                        <th>Pagamento #</th>
-                        <th class="text-center">Data da Solicitação</th>
-                        <th class="text-center">Valor do Pagamento</th>
-                        <th class="text-center">Link do Boleto</th>
-                        <th class="text-right">Vencimento</th>
-                        <th class="text-center">Data do Pagamento</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">AÇÕES</th>
+                        <th>Cód.</th>
+                        <th>Cliente</th>
+                        <th class="text-center" width="150">Data da Solicitação</th>
+                        <th class="text-center" width="100">Valor do Pagamento</th>
+                        <th>Boleto</th>
+                        <th class="text-center" width="80">Ação</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
+                      $results = array();
                       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                      $sql = 'SELECT * FROM depositos ORDER BY dt_solicitacao DESC ';
-
-                      foreach ($pdo->query($sql) as $row) {
-                          if ($row['id']) {
-                              $pagamento = '<font size="2" color="#D96D00">' . $row['id'] . '</font>';
-                          }
-                          if ($row['dt_solicitacao']) {
-                            $solicitacao = '<font size="2">' . converte($row['dt_solicitacao'],2) . '</font>';
-                        }
-                          if ($row['valor']) {
-                              $valor = '<font size="2"><strong>' . $row['valor'] . '</strong></font>';
-                          }
-                          if ($row['boleto']) {
-                              $boleto = '<font size="2">' . $row['boleto'] . '</font>';
-                          }
-                          if ($row['dt_vencimento']) {
-                              $vencimento = '<font size="2">' . $row['dt_vencimento'] . '</font>';
-                          }
-                          if ($row['dt_pagamento']) {
-                              $dt_pagamento = '<font size="2">' . $row['dt_pagamento'] . '</font>';
-                          }
-                          if ($row['status'] == 1) {
-                            $status = '<font size="2"><span class="label label-info">Aguardando Boleto</span></font>';
-                          }
-                          if ($row['status'] == 2) {
-                              $status = '<font size="2"><span class="label label-warning">Aguardando Pagamento</span></font>';
-                          }
-                          if ($row['status'] == 3) {
-                              $status = '<font size="2"><span class="label label-danger">Boleto Vencido</span></font>';
-                          }
-                          if ($row['status'] == 4) {
-                              $status = '<font size="2"><span class="label label-success">Concluído</span></font>';
-                          }
-
-                          echo "<tr>";
-                          echo "<td>" . $pagamento . "</td>";
-                          echo "<td>" . $solicitacao . "</td>";
-                          echo "<td>R$ " . $valor . "</td>";
-                          echo "<td>" . $boleto . "</td>";
-                          echo "<td>" . $vencimento . "</td>";
-                          echo "<td>" . $dt_pagamento . "</td>";
-                          echo "<td>" . $status . "</td>";
-                          echo "<td width=205 class='text-center'>";
-                          echo '<a class="btn btn-primary btn-rounded btn-sm button-element" title="Enviar Boleto" href="inserir-boleto?id=' . $row['id'] . '"><i class="fa fa-send"></i></a>';
-                          echo " ";
-                          echo '<a class="btn btn-success btn-rounded btn-sm button-element" title="Confirmar Pagamento" href="confirma-pagamento.php?id=' . $row['id'] . '"><i class="fa fa-money"></i></a>';
-                         // echo " ";
-                         // echo    "<button title='Alterar Senha' style='margin-right:0.2em' onclick='senha(" . $row["id"] . ");' class='btn btn-primary btn-rounded btn-sm button-element'><span class='fa fa-key'></span></button>";
-                         // echo " ";
-                         // echo '<a class="btn btn-danger btn-rounded btn-sm button-element" title="Excluir"  href="configuracaoUsuariosExcluir.php?id=' . $row['id'] . '"><i  class="fa fa-trash"></i></a>';
-                          echo "</td>";
-                          }
-                          echo "</tr>";
+                      $sql = 'SELECT  CONCAT(usuarios.nome, " " , usuarios.sobrenome) as cliente, depositos.id, depositos.dt_solicitacao, depositos.boleto, depositos.valor, depositos.status                     
+                       FROM  depositos
+                       LEFT JOIN usuarios on usuarios.id = depositos.usuario';
+                      $stmt = $pdo->prepare($sql);
+                      $stmt->execute();
+                      if($stmt->rowCount() > 0) {
+                        $results = $stmt->fetchAll();
+                      }
+                      $status = array(
+                        array('Aguardando Boleto', 'info'),
+                        array('Aguardando Pagamento', 'warning'),
+                        array('Boleto Vencido', 'danger'),
+                        array('Concluído', 'success')                         
+                      );
                       ?>
+                      <?php foreach($results as $result): ?>
+                        <tr>
+                          <td data-register-id="<?php echo $result['id']; ?>"><?php echo $result['id']; ?></td>
+                          <td data-register-cliente="<?php echo utf8_encode($result['cliente']); ?>"><?php echo utf8_encode($result['cliente']); ?></td>
+                          <td data-register-data="<?php echo $result['dt_solicitacao']; ?>"><?php echo $result['dt_solicitacao']; ?></td>
+                          <td data-register-valor="valor">R$ <?php echo $result['valor']; ?></td>
+                          <td><a href="assets/files/boletos/<?php echo !empty($result['boleto']) ? $result['boleto']:'#'; ?>" target="_blank" class="btn-link"><?php echo !empty($result['boleto']) ? 'Visualizar boleto' : 'Boleto não encontrado';?></a></td>
+                          <td class="text-center"><button class="btn btn-danger btn-sm" data-toggle="modal" data-modal="#modalBoleto" data-id="<?php echo $result['id']; ?>">Enviar boleto</button></td>
+                        </tr>
+                      <?php endforeach; ?>
+                     
                     </tbody>
                   </table>
                 </div><!-- invoices -->
@@ -96,6 +111,42 @@
             </div>
           </div><!-- END - PAGE CONTENT -->
           
+          <!-- Start -\ modal -->
+          <div id="modalBoleto" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                      
+              <form method="POST" enctype="multipart/form-data">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Enviar boleto</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                        <input type="hidden" class="form-control" name="id" />
+                        <div class="col-lg-12" data="dadosCliente"></div>
+                        <div class="col-lg-3"><br />
+                          <div class="form-group">
+                            <label for="dt_vencimento">Data vencimento.</label>
+                            <input type="tel" class="form-control" placeholder="00/00/0000" name="dt_vencimento">
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="boleto">Selecione o boleto.</label>
+                            <input type="file" class="form-control"  name="boleto" />
+                        </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" value="gerarBoleto">Gerar boleto</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>   
+          <!--- End -\ Modal -->
+
           <!-- Chama o cabeçalho e o menu -->
           <?php include("includes/footer.php");?>
 
@@ -107,49 +158,14 @@
       <script src="assets/js/jquery.scrollbar.min.js"></script>
       <script src="assets/plugins/modernizr/modernizr.custom.js"></script>
       <script src="assets/plugins/classie/classie.js"></script>  
-      <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+      <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>      
+      <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+      <script type="text/javascript" src="js/jquery.mask-init.min.js"></script>
       <!-- Custom Theme Scripts -->
       <script src="assets/js/preloader.min.js"></script>
       <script src="assets/js/custom.min.js"></script>
 	  
-	  <script language="javascript">   
-    function moeda(a, e, r, t) {
-        let n = ""
-          , h = j = 0
-          , u = tamanho2 = 0
-          , l = ajd2 = ""
-          , o = window.Event ? t.which : t.keyCode;
-        if (13 == o || 8 == o)
-            return !0;
-        if (n = String.fromCharCode(o),
-        -1 == "0123456789".indexOf(n))
-            return !1;
-        for (u = a.value.length,
-        h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
-            ;
-        for (l = ""; h < u; h++)
-            -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
-        if (l += n,
-        0 == (u = l.length) && (a.value = ""),
-        1 == u && (a.value = "0" + r + "0" + l),
-        2 == u && (a.value = "0" + r + l),
-        u > 2) {
-            for (ajd2 = "",
-            j = 0,
-            h = u - 3; h >= 0; h--)
-                3 == j && (ajd2 += e,
-                j = 0),
-                ajd2 += l.charAt(h),
-                j++;
-            for (a.value = "",
-            tamanho2 = ajd2.length,
-            h = tamanho2 - 1; h >= 0; h--)
-                a.value += ajd2.charAt(h);
-            a.value += r + l.substr(u - 2, u)
-        }
-        return !1
-    }
-    </script>
+	  
     </div>
   </body>
 </html>
@@ -178,6 +194,8 @@
         //Inserindo no Banco:
         if($validacao)
         {
+          $valor = str_replace(',','.', str_replace('.','', $valor));
+          // echo "<script>alert('".str_replace(',','.', str_replace('.','', $valor))."')</script>";exit;
             $pdo = Banco::conectar();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO depositos (usuario, dt_solicitacao, valor, boleto, dt_vencimento, dt_pagamento, status) VALUES(?,?,?,?,?,?,?)";

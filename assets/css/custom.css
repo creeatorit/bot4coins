@@ -6787,6 +6787,7 @@ xcustom form elements
 }
 #user-image-v1 img {
     width: 180px;
+    height: 180px;
     border-radius: 50%;
 }
 .invoice-form-title {
@@ -7105,4 +7106,15 @@ outline: none !important;
 }
 .menu-background-img01 .sidebar-footer {
     background-color: rgba(0,0,0,0.5);
+}
+
+/* Custom style */
+.d-none {
+    display: none !important;
+}
+.icon-user-phoyo-edit {
+    color: #ffd500; 
+    position: absolute; 
+    top: 140px; 
+    left: 85px;
 }

@@ -159,11 +159,15 @@ switch (get_post_action('button_pessoais', 'button_senha', 'button_endereco', 'b
 
 
 $pdo = Banco::conectar();
+$data = array();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = 'SELECT * FROM usuarios where id = "'.$_SESSION['UsuarioID'].'" ';
+$sql = "SELECT * FROM usuarios where id = :id";
 $q = $pdo->prepare($sql);
-$q->execute(array($id));
-$data = $q->fetch(PDO::FETCH_ASSOC);
+$q->bindValue(':id', $_SESSION['UsuarioID']);
+$q->execute();
+if($q->rowCount() > 0) {
+  $data = $q->fetch();
+}
 ?>
          
           <!-- PAGE CONTENT -->
@@ -183,8 +187,12 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                           <div class="box">
                             <div class="progress"></div>
                           </div>
-                          <div class="v-align">
-                            <img src="assets/images/img_profiles/<?php echo $data['foto']; ?>" >
+                          <div class="v-align" style="position: relative">
+                            <!-- Start .\ update photo user -->
+                            <input class="form-control input-type-1 d-none user-photo-edit" id="user-photo" name="foto" type="file" required>
+                            <label class="icon-note icons icon-user-phoyo-edit" for="user-photo"></label>
+                            <!-- End .\ update photo user -->
+                            <img src="assets/images/img_profiles/<?php echo $data['foto']; ?>" class="user-photo-preview">
                             <div class="arrow"></div>
                           </div>
                         </div>
@@ -213,12 +221,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <div class="panel-body padding_30">
                       <form class="form-horizontal" action="member-profile" method="POST">
                         <fieldset>
-                          <div class="form-group">
-                            <label for="inputPhoto" class="col-lg-12 control-label">Foto do Perfil</label>
-                            <div class="col-lg-12">
-                              <input class="form-control input-type-1" id="foto" name="foto" type="file" required>
-                            </div>
-                          </div>
                           <div class="form-group">
                             <label for="inputFirstName" class="col-lg-12 control-label">Primeiro nome</label>
                             <div class="col-lg-12">

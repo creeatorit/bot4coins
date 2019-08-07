@@ -76,7 +76,8 @@ $exibirModal = true;
 		<!-- Simple line icons -->
 		<link href="assets/css/simple-line-icons.css" rel="stylesheet">
     <!-- Font awesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome-animation.min.css" rel="stylesheet">
     <!-- Calendar -->
     <link href="assets/plugins/calendar/fullcalendar.css" rel="stylesheet">
     <link href="assets/plugins/calendar/jquery.qtip.css" rel="stylesheet">
@@ -91,9 +92,10 @@ $exibirModal = true;
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="js/app.js"></script>
 	</head>
   <body class="nav-md preloader-off developer-mode">
     <div class="pace-cover"></div>
@@ -139,7 +141,8 @@ $exibirModal = true;
                     <ul class="nav side-menu">
                         <li><a href="dashboard-admin"><i class="icon-home icons"></i> <span>Página Inicial</span></a></li> 
                         <li><a href="members-admin"><i class="icon-people icons"></i> <span>Nossos Membros</span></a></li>  
-                        <li><a href="depositos-admin"><i class="icon-layers icons"></i> <span>Solicitações de Depósitos</span></a></li>     
+                        <li><a href="depositos-admin"><i class="icon-layers icons"></i> <span>Depositos pendentes</span></a></li>   
+                        <li><a href="depositos"><i class="icon-layers icons"></i> <span>Pagamentos Recebidos</span></a></li>     
                         <li><a href="saques"><i class="icon-refresh icons"></i> <span>Saques Efetuados</span></a></li>                        
                         <li><a href="meu-plano"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Nosso Financeiro</span></a></li>
                       </ul>
@@ -167,10 +170,22 @@ $exibirModal = true;
                   </div>
                 </li>               
               </ul> <!-- top menu ul -->
+              <?php 
+               $pdo = Banco::conectar();
+               $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+               $sql = "SELECT foto FROM usuarios WHERE id = :id";
+               $q = $pdo->prepare($sql);
+               $q->bindValue(':id', $_SESSION['UsuarioID']);
+               $q->execute();
+               if($q->rowCount() > 0) {
+                 $data = $q->fetch();
+               }
+               Banco::desconectar();
+               ?>
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/images/profile-pic.jpg" alt="">
+                    <img src="assets/images/img_profiles/<?php echo $data['foto']; ?>" alt="" class="user-photo-preview">
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="member-profile"> Minha conta</a></li>
