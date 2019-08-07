@@ -76,8 +76,7 @@ $exibirModal = true;
 		<!-- Simple line icons -->
 		<link href="assets/css/simple-line-icons.css" rel="stylesheet">
     <!-- Font awesome icons -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/font-awesome-animation.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Calendar -->
     <link href="assets/plugins/calendar/fullcalendar.css" rel="stylesheet">
     <link href="assets/plugins/calendar/jquery.qtip.css" rel="stylesheet">
@@ -140,7 +139,7 @@ $exibirModal = true;
                     <ul class="nav side-menu">
                         <li><a href="dashboard-admin"><i class="icon-home icons"></i> <span>Página Inicial</span></a></li> 
                         <li><a href="members-admin"><i class="icon-people icons"></i> <span>Nossos Membros</span></a></li>  
-                        <li><a href="depositos"><i class="icon-layers icons"></i> <span>Pagamentos Recebidos</span></a></li>     
+                        <li><a href="depositos-admin"><i class="icon-layers icons"></i> <span>Solicitações de Depósitos</span></a></li>     
                         <li><a href="saques"><i class="icon-refresh icons"></i> <span>Saques Efetuados</span></a></li>                        
                         <li><a href="meu-plano"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Nosso Financeiro</span></a></li>
                       </ul>

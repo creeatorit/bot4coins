@@ -8,6 +8,16 @@
           <div class="right_col" id="dashboard-v2" role="main">
             <div class="spacer_30"></div>
             <div class="clearfix"></div>
+            <div class="header-title-breadcrumb element-box-shadow">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-6 col-xs-12 text-left">
+                          <h3>Dashboard</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer_30"></div>
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="panel panel-danger element-box-shadow market-place">
@@ -47,6 +57,17 @@
               </div>
             </div>
             
+            <div class="spacer_30"></div>
+            <div class="clearfix"></div>
+            <div class="header-title-breadcrumb element-box-shadow">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-6 col-xs-12 text-left">
+                          <h3>Cotação Criptomoedas</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="spacer_30"></div>
            
             <div class="margin_left_right_30">
@@ -113,7 +134,6 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="scrollToTop"><i class="fa fa-chevron-up text-white" aria-hidden="true"></i></a>
           </div>
 
 
