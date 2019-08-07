@@ -27,7 +27,7 @@
                                         ?>
                                           <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                                             <div class="members_img_holder">
-                                                <div class="memeber01-img-holder"><img src="assets/images/bitcurrency_member1.jpg"></div>
+                                                <div class="memeber01-img-holder"><img src="assets/images/img_profiles/<?php echo $row['foto'];?>"></div>
                                                 <div class="member01-content">
                                                   <div class="member01-content-inside">
                                                     <h3 class="member01_name text-center"><a href="historico?id=<?php echo $row['id']; ?>"><?php echo $row['nome']; ?></a></h3>
