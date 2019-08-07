@@ -19,7 +19,7 @@
          // Busca o valor saques com status 4 (concluído)
          $results = array();
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $sql = 'SELECT SUM(valor) AS valor FROM  saques WHERE usuario = :usuario AND status = "4"';
+         $sql = 'SELECT SUM(valor) AS valor FROM  saques WHERE usuario = :usuario AND status = "2"';
          $stmt = $pdo->prepare($sql);
          $stmt->bindValue(':usuario', $_SESSION['UsuarioID']);
          $stmt->execute();
@@ -70,7 +70,7 @@
                   <div class="panel-heading no-padding">
                     <div class="div-market-place">
                       <h3> Saldo Disponível</h3>
-                      <h1>R$ 1.500,00</h1>
+                      <h1>R$ <?php echo  number_format($saldo,2,",","."); ?></h1>
                       <h2>Lucro ontem: R$ 150,00</h2>
                       <p class="text-bold text-white">Saque automático todo dia 5 de cada mês.</p>
                     </div>
