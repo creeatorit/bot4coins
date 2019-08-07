@@ -183,8 +183,12 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                           <div class="box">
                             <div class="progress"></div>
                           </div>
-                          <div class="v-align">
-                            <img src="assets/images/img_profiles/<?php echo $data['foto']; ?>" >
+                          <div class="v-align" style="position: relative">
+                            <!-- Start .\ update photo user -->
+                            <input class="form-control input-type-1 d-none user-photo-edit" id="user-photo" name="foto" type="file" required>
+                            <label class="icon-note icons icon-user-phoyo-edit" for="user-photo"></label>
+                            <!-- End .\ update photo user -->
+                            <img src="assets/images/img_profiles/<?php echo $data['foto']; ?>" class="user-photo-preview">
                             <div class="arrow"></div>
                           </div>
                         </div>

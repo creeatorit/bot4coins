@@ -95,6 +95,8 @@ $exibirModal = true;
     <script type="text/javascript" src="js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="js/app.js"></script>
 	</head>
   <body class="nav-md preloader-off developer-mode">
     <div class="pace-cover"></div>
@@ -168,10 +170,22 @@ $exibirModal = true;
                   </div>
                 </li>               
               </ul> <!-- top menu ul -->
+              <?php 
+               $pdo = Banco::conectar();
+               $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+               $sql = "SELECT foto FROM usuarios WHERE id = :id";
+               $q = $pdo->prepare($sql);
+               $q->bindValue(':id', $_SESSION['UsuarioID']);
+               $q->execute();
+               if($q->rowCount() > 0) {
+                 $data = $q->fetch();
+               }
+               Banco::desconectar();
+               ?>
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/images/profile-pic.jpg" alt="">
+                    <img src="assets/images/img_profiles/<?php echo $data['foto']; ?>" alt="" class="user-photo-preview">
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="member-profile"> Minha conta</a></li>
