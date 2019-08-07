@@ -3,11 +3,43 @@
 
 <!-- Script que coleta a cotação das Cryptomoedas -->
 <script type="text/javascript" src="js/currency.js"></script>
-         
+         <?php 
+         // Busca o valor depositado com status 4 (concluído)
+         $valor_deposito = array();
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $sql = 'SELECT SUM(valor) AS valor FROM  depositos WHERE usuario = :usuario AND status = "4"';
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue(':usuario', $_SESSION['UsuarioID']);
+         $stmt->execute();
+         if($stmt->rowCount() > 0) {
+           $result = $stmt->fetch();
+           $valor_depositado = $result['valor'];
+         }
+
+         // Busca o valor saques com status 4 (concluído)
+         $results = array();
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $sql = 'SELECT SUM(valor) AS valor FROM  saques WHERE usuario = :usuario AND status = "4"';
+         $stmt = $pdo->prepare($sql);
+         $stmt->bindValue(':usuario', $_SESSION['UsuarioID']);
+         $stmt->execute();
+         if($stmt->rowCount() > 0) {
+           $result = $stmt->fetch();
+           $valor_sacado = $result['valor'];
+         }
+        
+         $saldo = $valor_depositado-$valor_sacado;
+         ?>
           <!-- PAGE CONTENT -->
           <div class="right_col" id="dashboard-v2" role="main">
             <div class="spacer_30"></div>
             <div class="clearfix"></div>
+            <div class="row">
+              
+              <div class="col-lg-12">
+                <h1>Meu saldo atual: <small>R$ <?php  echo  number_format($saldo,2,",","."); ?></small></h1>
+              </div>
+            </div>
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-lg-4">
                 <div class="panel panel-danger element-box-shadow market-place">
