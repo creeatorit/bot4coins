@@ -63,7 +63,7 @@ if (count($users) != 1) {
     } if($_SESSION['UsuarioNivel'] == '100') {
         header("Location: ../dashboard-admin");
         exit;
-    } else {
+    } if($_SESSION['UsuarioNivel'] == '1') {
         header("Location: ../dashboard");
         exit;
     }

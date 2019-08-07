@@ -2,7 +2,7 @@
 <?php include("includes/header.php");?>
 
 <!-- Script que coleta a cotação das Cryptomoedas -->
-<script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+<script type="text/javascript" src="js/currency.js"></script>
          
           <!-- PAGE CONTENT -->
           <div class="right_col" id="dashboard-v2" role="main">
@@ -54,66 +54,60 @@
                 <div class="col-sm-6 col-lg-4">
                   <div class="panel panel-default exchange">
                     <div class="panel-body">
-                      <h3><i class="cc BTC" title="BTC"></i> Bitcoin BTC</h3>
+                      <h3>Bitcoin BTC</h3>
                       <div class="row">
                         <div class="coinmarketcap-currency-widget" data-currencyid="1" data-base="BRL" data-secondary="" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
                       </div>
-                      <div class="highchart_currency" id="chart_btc"></div>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                   <div class="panel panel-default exchange">
                     <div class="panel-body">
-                      <h3><i class="cc LTC" title="LTC"></i> Litecoin LTC</h3>
+                      <h3>Litecoin LTC</h3>
                       <div class="row">
                         <div class="coinmarketcap-currency-widget" data-currencyid="2" data-base="BRL" data-secondary="" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
                       </div>
-                      <div class="highchart_currency" id="chart_ltc"></div>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                   <div class="panel panel-default exchange">
                     <div class="panel-body">
-                      <h3><i class="cc NEO" title="NEO"></i> Neo NEO</h3>
+                      <h3>Neo NEO</h3>
                       <div class="row">
                         <div class="coinmarketcap-currency-widget" data-currencyid="1376" data-base="BRL" data-secondary="" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
                       </div>
-                      <div class="highchart_currency" id="chart_neo"></div>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                   <div class="panel panel-default exchange">
                     <div class="panel-body">
-                      <h3><i class="cc DASH" title="DASH"></i> Dash DASH</h3>
+                      <h3>Dash DASH</h3>
                       <div class="row">
                         <div class="coinmarketcap-currency-widget" data-currencyid="131" data-base="BRL" data-secondary="" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
                       </div>
-                      <div class="highchart_currency" id="chart_dash"></div>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                   <div class="panel panel-default exchange">
                     <div class="panel-body">
-                      <h3><i class="cc ETH" title="ETH"></i> Ethereum ETH</h3>
+                      <h3>Ethereum ETH</h3>
                       <div class="row">
                         <div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="BRL" data-secondary="" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
                       </div>
-                      <div class="highchart_currency" id="chart_eth"></div>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                   <div class="panel panel-default exchange">
                     <div class="panel-body">
-                      <h3><i class="cc XRP" title="XRP"></i> Ripple XRP</h3>
+                      <h3>Ripple XRP</h3>
                       <div class="row">
                         <div class="coinmarketcap-currency-widget" data-currencyid="52" data-base="BRL" data-secondary="" data-ticker="false" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="false"></div>
                       </div>
-                      <div class="highchart_currency" id="chart_ripple_xrp"></div>
                     </div>
                   </div>
                 </div>
