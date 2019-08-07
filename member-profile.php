@@ -159,11 +159,15 @@ switch (get_post_action('button_pessoais', 'button_senha', 'button_endereco', 'b
 
 
 $pdo = Banco::conectar();
+$data = array();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = 'SELECT * FROM usuarios where id = "'.$_SESSION['UsuarioID'].'" ';
+$sql = "SELECT * FROM usuarios where id = :id";
 $q = $pdo->prepare($sql);
-$q->execute(array($id));
-$data = $q->fetch(PDO::FETCH_ASSOC);
+$q->bindValue(':id', $_SESSION['UsuarioID']);
+$q->execute();
+if($q->rowCount() > 0) {
+  $data = $q->fetch();
+}
 ?>
          
           <!-- PAGE CONTENT -->
