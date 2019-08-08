@@ -52,7 +52,7 @@
                             $boleto = 'Não encontrado';
                           }
                           if ($row['dt_vencimento']) {
-                              $vencimento = '<font size="2">' . $row['dt_vencimento'] . '</font>';
+                              $vencimento = '<font size="2">' . converte($row['dt_vencimento'],2) . '</font>';
                           }
                           if ($row['dt_pagamento']) {
                               $dt_pagamento = '<font size="2">' . $row['dt_pagamento'] . '</font>';
@@ -143,9 +143,9 @@
         //Insere data e hora do cadastro no BD
         $usuario        = $_SESSION['UsuarioID'];
         $dt_solicitacao = date("Y-m-d");
-        $boleto         = '-';
-        $dt_vencimento  = '-';
-        $dt_pagamento   = '-';
+        $boleto         = '';
+        $dt_vencimento  = 'Não disponível';
+        $dt_pagamento   = 'Não disponível';
         $status         = '1';
         }
 

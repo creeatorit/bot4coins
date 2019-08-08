@@ -34,57 +34,6 @@ switch (get_post_action('button_pessoais', 'button_senha', 'button_endereco', 'b
 
       if ($validacao) {
 
-              /* INICIA INSERÇÃO DAS IMAGENS NA PASTA */
-              $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-              $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-              $foto = $_FILES['foto'];
-              
-              if (count($foto) > 0) {
-                for ($q = 0; $q < count($foto['tmp_name']); $q++) {
-                    $tipo = $foto['type'][$q];
-                    if (in_array($tipo, array('image/jpeg', 'image/png'))) {
-
-                        //nome gerado para a imagem a cada loop
-                        $tmpname = md5(time() . rand(0, 999)) . '.jpeg';
-
-                        //aqui a imagem ja é movida (upload) para a pasta (assets/img/anuncios/) com seu novo name ($tmpname)
-                        move_uploaded_file($foto['tmp_name'][$q], 'assets/images/img_profiles/' . $tmpname);
-
-                        //daqui pra baixo é um brinde kkk, apenas para criarmos uma nova imagem com largura, altura desejados
-                        list($larg_orig, $alt_orig) = getimagesize('assets/images/img_profiles/' . $tmpname);
-                        $tamanho = $larg_orig / $alt_orig;
-
-                        $largura = 300;
-                        $altura = 300;
-
-                        if ($largura / $altura > $tamanho) {
-                            $largura = $altura * $tamanho;
-                        } else {
-                            $altura = $largura / $tamanho;
-                        }
-                        $img = imagecreatetruecolor($largura, $altura);
-                        if ($tipo == 'image/jpeg') {
-                            $original = imagecreatefromjpeg('assets/images/img_profiles/' . $tmpname);
-                        } elseif ($tipo == 'image/png') {
-                            $original = imagecreatefrompng('assets/images/img_profiles/' . $tmpname);
-                        }
-                        imagecopyresampled($img, $original, 0, 0, 0, 0, $largura, $altura, $larg_orig, $alt_orig);
-
-                        imagejpeg($img, 'assets/images/img_profiles/' . $tmpname, 80);
-
-                        // aqui ja faço a inserção de cada novo name da imagem no banco de dados
-                        //$sql = $pdo->prepare("INSERT INTO usuarios (foto) VALUES (:foto)");                        
-                        //$sqlfoto->bindValue(":foto", $tmpname);
-                        //$sqlfoto->execute();
-
-                        $sqlfoto = $pdo->prepare('INSERT INTO usuarios (foto) VALUES (:foto) WHERE id = "' . $_SESSION['UsuarioID'] . '" ');
-                        $sqlfoto->bindValue(":foto", $tmpname);
-                        $sqlfoto->execute();
-                    }
-                }
-              }
-
               $sqlpessoais = 'UPDATE usuarios set nome = ?, sobrenome = ?, nascimento = ?, rg = ?, cpf = ?, sexo = ?, email = ?, telefone = ? WHERE id = "' . $_SESSION['UsuarioID'] . '"  ';
               $q = $pdo->prepare($sqlpessoais);
               $q->execute(array($nome, $sobrenome, $nascimento, $rg, $cpf, $sexo, $email, $telefone));

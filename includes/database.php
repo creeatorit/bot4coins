@@ -3,9 +3,9 @@
 class Banco
 {
     private static $dbNome    = 'bot4coins';
-    private static $dbHost    = 'localhost';
+    private static $dbHost    = 'localhost:3306';
     private static $dbUsuario = 'root';
-    private static $dbSenha   = '';
+    private static $dbSenha   = '12031980';
 
     private static $cont      = null;
 

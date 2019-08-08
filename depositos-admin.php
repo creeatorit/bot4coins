@@ -97,7 +97,7 @@
                         <tr>
                           <td data-register-id="<?php echo $result['id']; ?>"><?php echo $result['id']; ?></td>
                           <td data-register-cliente="<?php echo utf8_encode($result['cliente']); ?>"><?php echo utf8_encode($result['cliente']); ?></td>
-                          <td data-register-data="<?php echo $result['dt_solicitacao']; ?>"><?php echo $result['dt_solicitacao']; ?></td>
+                          <td data-register-data="<?php echo converte($result['dt_solicitacao'],2); ?>"><?php echo converte($result['dt_solicitacao'],2); ?></td>
                           <td data-register-valor="valor">R$ <?php echo $result['valor']; ?></td>
                           <td><a href="assets/files/boletos/<?php echo !empty($result['boleto']) ? $result['boleto']:'#'; ?>" target="_blank" class="btn-link"><?php echo !empty($result['boleto']) ? 'Visualizar boleto' : 'Boleto não encontrado';?></a></td>
                           <td class="text-center"><button class="btn btn-danger btn-sm" data-toggle="modal" data-modal="#modalBoleto" data-id="<?php echo $result['id']; ?>">Enviar boleto</button></td>
@@ -169,42 +169,3 @@
     </div>
   </body>
 </html>
-
-<!-- INICIA SQL PARA INSERÇÃO DE DEPÓSITOS -->
-<?php
-
-    if(!empty($_POST))
-    {
-      
-        $valor = $_POST['deposito'];      
-
-        //Validaçao dos campos:
-        $validacao = true;
-
-        //Insere data e hora do cadastro no BD
-        $usuario        = $_SESSION['UsuarioID'];
-        $dt_solicitacao = date("Y-m-d");
-        $boleto         = '-';
-        $dt_vencimento  = '-';
-        $dt_pagamento   = '-';
-        $status         = '1';
-        }
-
-
-        //Inserindo no Banco:
-        if($validacao)
-        {
-          $valor = str_replace(',','.', str_replace('.','', $valor));
-          // echo "<script>alert('".str_replace(',','.', str_replace('.','', $valor))."')</script>";exit;
-            $pdo = Banco::conectar();
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO depositos (usuario, dt_solicitacao, valor, boleto, dt_vencimento, dt_pagamento, status) VALUES(?,?,?,?,?,?,?)";
-            $q = $pdo->prepare($sql);
-            $q->execute(array($usuario,$dt_solicitacao,$valor,$boleto,$dt_vencimento,$dt_pagamento,$status));
-            Banco::desconectar();
-
-	    echo "<script>alert('SOLICITAÇÃO DE DEPÓSITO REALIZADA COM SUCESSO!');location.href='depositos.php';</script>";
-
-        }
-?>
-<!-- FINALIZA SQL PARA INSERÇÃO DE DEPÓSITOS -->
