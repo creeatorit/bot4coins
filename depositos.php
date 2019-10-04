@@ -1,3 +1,19 @@
+<?php
+// A sessão precisa ser iniciada em cada página diferente
+if (!isset($_SESSION)) session_start();
+
+$nivel_necessario = 1;
+
+// Verifica se não há a variável da sessão que identifica o usuário
+//if (!isset($_SESSION['UsuarioID']) AND ($_SESSION['UsuarioNivel'] >$nivel_necessario) OR ($_SESSION['UsuarioNivel'] <$nivel_necessario2)) {
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel_necessario)) {
+    // Destrói a sessão por segurança
+    session_destroy();
+    // Redireciona o visitante de volta pro login
+    header("Location: login");
+    exit;
+} ?>
+
 <!-- Chama o cabeçalho e o menu -->
 <?php include("includes/header.php");?>
          
@@ -34,7 +50,7 @@
                     <tbody>
                       <?php
                       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                      $sql = 'SELECT * FROM depositos WHERE usuario = "'.$_SESSION['UsuarioID'].'" ';
+                      $sql = 'SELECT * FROM depositos WHERE usuario = "'.$_SESSION['UsuarioID'].'" ORDER BY id DESC' ;
 
                       foreach ($pdo->query($sql) as $row) {
                           if ($row['id']) {
@@ -55,7 +71,7 @@
                               $vencimento = '<font size="2">' . converte($row['dt_vencimento'],2) . '</font>';
                           }
                           if ($row['dt_pagamento']) {
-                              $dt_pagamento = '<font size="2">' . $row['dt_pagamento'] . '</font>';
+                              $dt_pagamento = '<font size="2">' . converte($row['dt_pagamento'],2) . '</font>';
                           }
                           if ($row['status'] == 1) {
                             $status = '<font size="2"><span class="label label-info">Aguardando Boleto</span></font>';

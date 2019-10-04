@@ -36,7 +36,7 @@ $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (count($users) != 1) {
-    echo "<script>alert('OPS! USUÁRIO OU SENHA INVÁLIDOS.');location.href='logout.php';</script>";
+    echo "<script>alert('OPS! USUÁRIO OU SENHA INVÁLIDOS.');location.href='sair';</script>";
     exit;
 } else {
 
@@ -54,6 +54,11 @@ if (count($users) != 1) {
     $_SESSION['UsuarioTelefone']      = $resultado['telefone'];
     $_SESSION['UsuarioNivel']         = $resultado['nivel'];
     $_SESSION['UsuarioSenha']         = $resultado['senha'];
+    $_SESSION['UsuarioFoto']          = $resultado['foto'];
+    
+    $_SESSION['UsuarioDetalhesPessoais'] = $resultado['detalhes_pessoais'];
+    $_SESSION['UsuarioDetalhesEndereco'] = $resultado['detalhes_endereco'];
+    $_SESSION['UsuarioDetalhesBanco']    = $resultado['detalhes_banco'];
 
 
     //session_start();
@@ -63,9 +68,13 @@ if (count($users) != 1) {
     } if($_SESSION['UsuarioNivel'] == '100') {
         header("Location: ../dashboard-admin");
         exit;
-    } if($_SESSION['UsuarioNivel'] == '1') {
+    } if(($_SESSION['UsuarioFoto'] == '') or ($_SESSION['UsuarioDetalhesPessoais'] == '2') or ($_SESSION['UsuarioDetalhesEndereco'] == '2') or ($_SESSION['UsuarioDetalhesBanco'] == '2')) {
+        echo "<script>alert('COMPLETE SEU CADASTRO PARA CONTINUAR!');location.href='../member-profile';</script>";
+        //header("Location: ../member-profile");
+        exit;
+    } if($_SESSION['UsuarioNivel'] == '1' && ($_SESSION['UsuarioFoto'] != '')) {
         header("Location: ../dashboard");
         exit;
-    }
+}
     
 }

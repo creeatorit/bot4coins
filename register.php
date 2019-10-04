@@ -52,7 +52,7 @@ include("includes/database.php");
       <a href="index.html"><br /><img src="assets/images/logo1.png" alt="cryptic-logo"></a>
         <h3 class="text-white text-bold">Faça Seu Cadastro</h3>
         <div class="spacer_10"></div>
-        <form action="register.php" method="post">
+        <form action="register" method="post">
           <div class="row">
           <div class="input--akira">
             <div class="col-xs-12">
@@ -69,32 +69,37 @@ include("includes/database.php");
                 </label>
               </span>
             <span class="input input--akira">
-              <input class="input__field input__field--akira" type="email" name="email" id="email" autocomplete="off" required />
+              <input class="input__field input__field--akira" type="email" name="email" id="email" autocomplete="off" onChange="this.value=this.value.toLowerCase()" required />
               <label class="input__label input__label--akira" for="input-1">
                 <span class="input__label-content input__label-content--akira">Email</span>
               </label>
             </span>
             <span class="input input--akira">
-                <input class="input__field input__field--akira" type="password" name="senha" id="senha" autocomplete="off" required />
-                <label class="input__label input__label--akira" for="input-1">
-                  <span class="input__label-content input__label-content--akira">Senha</span>
-                </label>
-              </span>
-              <!--
-              <span class="input input--akira">
-                  <input class="input__field input__field--akira" type="password" id="input-4" />
-                  <label class="input__label input__label--akira" for="input-1">
-                    <span class="input__label-content input__label-content--akira">Repetir Senha</span>
-                  </label>
-                </span>
-              -->
+              <input class="input__field input__field--akira" type="password" name="senha" id="senha" autocomplete="off" required />
+              <label class="input__label input__label--akira" for="input-1">
+                <span class="input__label-content input__label-content--akira">Senha</span>
+              </label>
+            </span>
+            <span class="input input--akira">
+              <select class="form-control input__field--akira" type="text" name="plano" id="plano" autocomplete="off" required />
+                <option></option>
+                <option value="1">BRONZE</option>
+                <option value="2">PRATA</option>
+                <option value="3">OURO</option>
+              </select>
+              <label class="input__label input__label--akira" for="select">
+                <span class="input__label-content input__label-content--akira">Escolha o plano</span>
+              </label>
+            </span>
           </div>
           </div>
           </div>
+          <!--
           <div class="register-check">
             <input type="checkbox" id="c1" name="terms" value="terms">
             <label for="c1" class="text-white"><span></span>Aceito os Termos e Condições</label>
           </div>
+          -->
           <input class="form-control text-bold" type="submit" value="criar minha conta">
         </form>
         <p class="text-white">ou <a href="login" class="text-bold">Fazer Login</a></p>
@@ -122,6 +127,7 @@ include("includes/database.php");
         $sobrenome   = $_POST['sobrenome'];
 	      $email       = $_POST['email'];
         $senha       = sha1($_POST['senha']);        
+        $plano       = $_POST['plano'];
 
         //Validaçao dos campos:
         $validacao = true;
@@ -140,9 +146,9 @@ include("includes/database.php");
         {
             $pdo = Banco::conectar();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO usuarios (nome, sobrenome, email, senha, status, nivel, termos, dt_cadastro, hr_cadastro) VALUES(?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO usuarios (nome, sobrenome, email, senha, status, nivel, termos, plano, dt_cadastro, hr_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
-            $q->execute(array($nome,$sobrenome,$email,$senha,$status,$nivel,$termos,$dt_cadastro,$hr_cadastro));
+            $q->execute(array($nome,$sobrenome,$email,$senha,$status,$nivel,$termos,$plano,$dt_cadastro,$hr_cadastro));
             Banco::desconectar();
 
 	    echo "<script>alert('CADASTRO REALIZADO COM SUCESSO!');location.href='login';</script>";

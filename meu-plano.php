@@ -1,5 +1,34 @@
+<?php
+// A sessão precisa ser iniciada em cada página diferente
+if (!isset($_SESSION)) session_start();
+
+$nivel_necessario = 1;
+
+// Verifica se não há a variável da sessão que identifica o usuário
+//if (!isset($_SESSION['UsuarioID']) AND ($_SESSION['UsuarioNivel'] >$nivel_necessario) OR ($_SESSION['UsuarioNivel'] <$nivel_necessario2)) {
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel_necessario)) {
+    // Destrói a sessão por segurança
+    session_destroy();
+    // Redireciona o visitante de volta pro login
+    header("Location: login");
+    exit;
+} ?>
+
 <!-- Chama o cabeçalho e o menu -->
 <?php include("includes/header.php");?>
+
+<?php 
+$pdo = Banco::conectar();
+$data = array();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT * FROM usuarios where id = :id";
+$q = $pdo->prepare($sql);
+$q->bindValue(':id', $_SESSION['UsuarioID']);
+$q->execute();
+if($q->rowCount() > 0) {
+  $data = $q->fetch();
+}
+?>
          
           <!-- PAGE CONTENT -->
           <div class="right_col pricing-tables" role="main">
@@ -17,7 +46,11 @@
             <div class="spacer_80"></div>
             <section class="pricing-section bg-12">
               <div class="pricing pricing--palden">
+                  <?php if($data['plano'] == '1'){ ?>
+                  <div class="pricing__item pricing__item--featured">
+                  <?php }else{ ?>
                   <div class="pricing__item">
+                  <?php } ?>
                       <div class="pricing__deco">
                           <svg class="pricing__deco-img" version="1.1" id="Layer_1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px" height="100px" viewBox="0 0 300 100" enable-background="new 0 0 300 100" xml:space="preserve">
                               <path class="deco-layer deco-layer--1" opacity="0.6" fill="#FFFFFF" d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
@@ -35,11 +68,19 @@
                       <ul class="pricing__feature-list">
                           <li class="pricing__feature text-bold">Robot X - Minerador</li>
                           <li class="pricing__feature">5% Mensal<br><span>Renda Fixa</span></li>
-                          <li class="pricing__feature">Moedas:<br><span>BTC | ETH</span></li>
+                          <li class="pricing__feature">Moeda:<br><span>OURO</span></li>
                       </ul>
-                      <button class="pricing__action">Escolher Plano</button>
+                      <?php if($data['plano'] == '1'){ ?>
+                      <button class="btn btn-default btn-rounded">Meu Plano</button>
+                      <?php }else{ ?>
+                      <button class="btn btn-secondary btn-rounded button-element">Escolher esse Plano</button>
+                      <?php } ?>
                   </div>
+                  <?php if($data['plano'] == '2'){ ?>
                   <div class="pricing__item pricing__item--featured">
+                  <?php }else{ ?>
+                  <div class="pricing__item">
+                  <?php } ?>
                       <div class="pricing__deco">
                           <svg class="pricing__deco-img" version="1.1" id="Layer_2" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px" height="100px" viewBox="0 0 300 100" enable-background="new 0 0 300 100" xml:space="preserve">
                               <path class="deco-layer deco-layer--1" opacity="0.6" fill="#FFFFFF" d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
@@ -57,11 +98,19 @@
                       <ul class="pricing__feature-list">
                           <li class="pricing__feature text-bold">Cyborg Z - Trader PRO</li>
                           <li class="pricing__feature">10% Mensal<br><span>Renda Fixa</span></li>
-                          <li class="pricing__feature">Moedas:<br><span>BTC | ETH | NEO | DASH</span></li>
+                          <li class="pricing__feature">Moeda:<br><span>OURO</span></li>
                       </ul>
-                      <button class="pricing__action">Escolher Plano</button>
+                      <?php if($data['plano'] == '2'){ ?>
+                      <button class="btn btn-default btn-rounded">Meu Plano</button>
+                      <?php }else{ ?>
+                      <button class="btn btn-secondary btn-rounded button-element">Escolher esse Plano</button>
+                      <?php } ?>
                   </div>
+                  <?php if($data['plano'] == '3'){ ?>
+                  <div class="pricing__item pricing__item--featured">
+                  <?php }else{ ?>
                   <div class="pricing__item">
+                  <?php } ?>
                       <div class="pricing__deco">
                           <svg class="pricing__deco-img" version="1.1" id="Layer_3" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px" height="100px" viewBox="0 0 300 100" enable-background="new 0 0 300 100" xml:space="preserve">
                               <path class="deco-layer deco-layer--1" opacity="0.6" fill="#FFFFFF" d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
@@ -79,9 +128,13 @@
                       <ul class="pricing__feature-list">
                           <li class="pricing__feature text-bold">Robot X + Cyborg Z</li>
                           <li class="pricing__feature">15% Mensal<br><span>Renda Fixa</span></li>
-                          <li class="pricing__feature">Moedas:<br><span>BTC | ETH | NEO | DASH | XRP | LTC</span></li>
+                          <li class="pricing__feature">Moeda:<br><span>OURO</span></li>
                       </ul>
-                      <button class="pricing__action">Escolher Plano</button>
+                      <?php if($data['plano'] == '3'){ ?>
+                      <button class="btn btn-default btn-rounded">Meu Plano</button>
+                      <?php }else{ ?>
+                      <button class="btn btn-secondary btn-rounded button-element">Escolher esse Plano</button>
+                      <?php } ?>
                   </div>
               </div>
             </section>

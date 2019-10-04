@@ -1,7 +1,44 @@
+<?php
+// A sessão precisa ser iniciada em cada página diferente
+if (!isset($_SESSION)) session_start();
+
+$nivel_necessario = 100;
+
+// Verifica se não há a variável da sessão que identifica o usuário
+//if (!isset($_SESSION['UsuarioID']) AND ($_SESSION['UsuarioNivel'] >$nivel_necessario) OR ($_SESSION['UsuarioNivel'] <$nivel_necessario2)) {
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel_necessario)) {
+    // Destrói a sessão por segurança
+    session_destroy();
+    // Redireciona o visitante de volta pro login
+    header("Location: login");
+    exit;
+} ?>
+
 <!-- Chama o cabeçalho e o menu -->
 <?php include("includes/header.php");?>
          
           <?php 
+
+          // Chama função para pegar o POST de cada FORM
+          function get_post_action($name)
+          {
+              $params = func_get_args();
+
+              foreach ($params as $name) {
+                  if (isset($_POST[$name])) {
+                      return $name;
+                  }
+              }
+          }
+
+
+          // Verifica qual botao foi clicado
+          switch (get_post_action('gerarBoleto', 'confirmarBoleto')) {
+
+            case 'gerarBoleto':
+
+            $n_identificacao = $_POST['n_identificacao'];
+
             if(!empty($_POST['dt_vencimento'])) {
                         
               $dt_vencimento = implode('-',array_reverse(explode('/',$_POST['dt_vencimento'])));
@@ -23,10 +60,11 @@
                     $pdo = Banco::conectar();
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     
-                    $sql = "UPDATE depositos set dt_vencimento = :vencimento, boleto = :boleto, status = '2'  WHERE id = :id";
+                    $sql = "UPDATE depositos set dt_vencimento = :vencimento, boleto = :boleto, n_identificacao = :n_identificacao, status = '2'  WHERE id = :id";
                     $q = $pdo->prepare($sql);
                     $q->bindValue(':vencimento', $dt_vencimento);
                     $q->bindValue(':boleto', $tmpname);
+                    $q->bindValue(':n_identificacao', $n_identificacao);
                     $q->bindValue(':id', $_POST['id']);
                     $q->execute();
                     if($q->rowCount() > 0) {
@@ -44,6 +82,30 @@
               
 
             }
+          
+          break;
+    
+          case 'confirmarBoleto':
+        
+              $id_deposito  = $_POST['id'];
+              $dt_pagamento = date("Y-m-d");
+              $status       = '4'; # CONFIRMADO PAGAMENTO
+        
+              $validacao = true;
+        
+              // começa a SALVAR antes de fechar
+              if ($validacao) {
+        
+                      $sqlConfirmacao = 'UPDATE depositos set dt_pagamento = ?, status = ? WHERE id = "' . $id_deposito . '"  ';
+                      $q = $pdo->prepare($sqlConfirmacao);
+                      $q->execute(array($dt_pagamento, $status));
+                      echo "<script>alert('CONFIRMAÇÃO DE DEPÓSITO REALIZADA COM SUCESSO!');</script>";
+              }
+              break;
+        
+          default:
+              
+          }
           ?>
           <!-- PAGE CONTENT -->
           <div id="crypto_address" class="right_col crypto_address" role="main">
@@ -71,6 +133,8 @@
                         <th class="text-center" width="150">Data da Solicitação</th>
                         <th class="text-center" width="100">Valor do Pagamento</th>
                         <th>Boleto</th>
+                        <th>Nº Identificacão</th>
+                        <th>Vencimento</th>
                         <th class="text-center" width="80">Ação</th>
                       </tr>
                     </thead>
@@ -78,9 +142,9 @@
                       <?php
                       $results = array();
                       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                      $sql = 'SELECT  CONCAT(usuarios.nome, " " , usuarios.sobrenome) as cliente, depositos.id, depositos.dt_solicitacao, depositos.boleto, depositos.valor, depositos.status                     
+                      $sql = 'SELECT  CONCAT(usuarios.nome, " " , usuarios.sobrenome) as cliente, depositos.id, depositos.dt_solicitacao, depositos.boleto, depositos.n_identificacao, depositos.dt_vencimento, depositos.valor, depositos.status                     
                        FROM  depositos
-                       LEFT JOIN usuarios on usuarios.id = depositos.usuario';
+                       LEFT JOIN usuarios on usuarios.id = depositos.usuario ORDER BY id DESC ';
                       $stmt = $pdo->prepare($sql);
                       $stmt->execute();
                       if($stmt->rowCount() > 0) {
@@ -95,12 +159,36 @@
                       ?>
                       <?php foreach($results as $result): ?>
                         <tr>
+                          <?php if(($result['status'] == '1') || ($result['status'] == '2')){ ?>
                           <td data-register-id="<?php echo $result['id']; ?>"><?php echo $result['id']; ?></td>
                           <td data-register-cliente="<?php echo utf8_encode($result['cliente']); ?>"><?php echo utf8_encode($result['cliente']); ?></td>
                           <td data-register-data="<?php echo converte($result['dt_solicitacao'],2); ?>"><?php echo converte($result['dt_solicitacao'],2); ?></td>
                           <td data-register-valor="valor">R$ <?php echo $result['valor']; ?></td>
-                          <td><a href="assets/files/boletos/<?php echo !empty($result['boleto']) ? $result['boleto']:'#'; ?>" target="_blank" class="btn-link"><?php echo !empty($result['boleto']) ? 'Visualizar boleto' : 'Boleto não encontrado';?></a></td>
+                          <td><a href="assets/files/boletos/<?php echo !empty($result['boleto']) ? $result['boleto']:'#'; ?>" target="_blank" class="btn-link"><?php echo !empty($result['boleto']) ? 'Visualizar boleto' : '<font color="#ff4933">Boleto não encontrado</font>';?></a></td>
+                          <td data-register-identificacao="n_identificacao"><?php if($result['n_identificacao'] == ''){ echo 'Sem Identificação'; }else{ echo $result['n_identificacao']; } ?></td>
+                          <td data-register-vencimento="dt_vencimento">
+                          <?php 
+                            $dt_atual		          = date("Y-m-d"); // data atual
+                            $timestamp_dt_atual 	= strtotime($dt_atual); // converte para timestamp Unix
+                            
+                            $dt_expira	        	= $result['dt_vencimento']; // data de expiração do anúncio
+                            $timestamp_dt_expira	= strtotime($dt_expira); // converte para timestamp Unix
+                            
+                            // data atual é maior que a data de expiração
+                            if ($timestamp_dt_atual > $timestamp_dt_expira) { // true
+                              echo "<font color='#ff4933' class='text-center text-bold'>VENCIDO</font><br />";
+                              
+                            }else{ // false
+                              echo converte($result['dt_vencimento'],2);
+                            }
+                          ?>
+                          </td>
+                          <?php if($result['boleto'] == ''){ ?>
                           <td class="text-center"><button class="btn btn-danger btn-sm" data-toggle="modal" data-modal="#modalBoleto" data-id="<?php echo $result['id']; ?>">Enviar boleto</button></td>
+                          <?php }else{ ?>
+                          <td class="text-center"><form method="POST" enctype="multipart/form-data"><input type="hidden" name="id" value="<?php echo $result['id']; ?>" ><button type="submit" class="btn btn-success btn-sm" name="confirmarBoleto">Confirmar Depósito</button></form></td>
+                          <?php }
+                          } ?>
                         </tr>
                       <?php endforeach; ?>
                      
@@ -132,6 +220,12 @@
                             <input type="tel" class="form-control" placeholder="00/00/0000" name="dt_vencimento">
                           </div>
                         </div>
+                        <div class="col-lg-5"><br />
+                          <div class="form-group">
+                            <label for="dt_vencimento">Nº Identificação.</label>
+                            <input type="number" class="form-control" name="n_identificacao">
+                          </div>
+                        </div>
                         <div class="col-lg-12">
                             <label for="boleto">Selecione o boleto.</label>
                             <input type="file" class="form-control"  name="boleto" />
@@ -139,13 +233,14 @@
                       </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" value="gerarBoleto">Gerar boleto</button>
+                    <button type="submit" class="btn btn-primary" value="gerarBoleto" name="gerarBoleto">Gerar boleto</button>
                   </div>
                 </div>
               </form>
             </div>
           </div>   
           <!--- End -\ Modal -->
+
 
           <!-- Chama o cabeçalho e o menu -->
           <?php include("includes/footer.php");?>

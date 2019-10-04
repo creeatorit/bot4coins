@@ -59,6 +59,25 @@ $exibirModal = true;
 ?>
 
 
+<?php
+$pdo = Banco::conectar();
+$data = array();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT * FROM depositos where usuario = :usuario";
+$q = $pdo->prepare($sql);
+$q->bindValue(':usuario', $_SESSION['UsuarioID']);
+$q->execute();
+if($q->rowCount() > 0) {
+  $data = $q->fetch();
+}
+
+ $sqlCountUsersDeposito = 'SELECT count(id) as qt FROM depositos WHERE usuario = "' . $_SESSION['UsuarioID'] . '" ';
+ foreach ($pdo->query($sqlCountUsersDeposito) as $rowCountUsersDeposito) {
+     $qtCountUsersDeposito = $rowCountUsersDeposito['qt'];
+ }
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt_BR">
 	<head>
@@ -119,35 +138,53 @@ $exibirModal = true;
                 </h1>
               </div>
               <div class="clearfix"></div>
-              <!-- Menu Users -->
-              <?php if ($_SESSION['UsuarioNivel'] == '1') { ?>
-              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <!-- Menu Users Completo -->
+              <?php if(($_SESSION['UsuarioFoto'] != '') and ($_SESSION['UsuarioDetalhesPessoais'] == '1') and ($_SESSION['UsuarioDetalhesEndereco'] == '1') and ($_SESSION['UsuarioDetalhesBanco'] == '1')) { ?>
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                   <div class="menu_section">
                       <ul class="nav side-menu">
-                          <li><a href="dashboard"><i class="icon-home icons"></i> <span>Página Inicial</span></a></li> 
-                          <li><a href="member-profile"><i class="icon-people icons"></i> <span>Meus Dados</span></a></li>  
-                          <li><a href="depositos"><i class="icon-layers icons"></i> <span>Meus Pagamentos</span></a></li>     
-                          <li><a href="saques"><i class="icon-refresh icons"></i> <span>Meus Saques</span></a></li>                        
+                          <?php if(($_SESSION['UsuarioDetalhesPessoais'] == '1') and ($_SESSION['UsuarioDetalhesEndereco'] == '1') and ($_SESSION['UsuarioDetalhesBanco'] == '1')){ ?>
+                          <li><a href="dashboard"><i class="icon-home icons"></i> <span>Página Inicial</span></a></li>
+                          <?php } ?>
+                          <li><a href="member-profile"><i class="icon-people icons"></i> <span>Meus Dados</span></a></li>
+                          <?php if(($rowCountUsersDeposito['qt'] < 1) and ($_SESSION['UsuarioDetalhesPessoais'] == '1') and ($_SESSION['UsuarioDetalhesEndereco'] == '1') and ($_SESSION['UsuarioDetalhesBanco'] == '1')){ ?>
+                          <li><a href="depositos"><i class="icon-layers icons"></i> <span>Meus Pagamentos</span></a></li>
+                          <?php } ?>
+                          <?php if($rowCountUsersDeposito['qt'] > 0){ ?>
+                          <li><a href="saques"><i class="icon-refresh icons"></i> <span>Meus Saques</span></a></li>
+                          <?php } ?>                        
                           <li><a href="meu-plano"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Meu Plano</span></a></li>
                           <li><a href="faq"><i class="fa fa-question" aria-hidden="true"></i> <span>Dúvidas Frequentes</span></a></li>
                         </ul>
                   </div>
                 </div>
+              <?php } ?>
+
+              <!-- Menu Users Incompleto -->
+              <?php if(($_SESSION['UsuarioFoto'] == '') or ($_SESSION['UsuarioDetalhesPessoais'] == '2') or ($_SESSION['UsuarioDetalhesEndereco'] == '2') or ($_SESSION['UsuarioDetalhesBanco'] == '2')) { ?>
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                  <div class="menu_section">
+                      <ul class="nav side-menu">
+                          <li><a href="member-profile"><i class="icon-people icons"></i> <span>Meus Dados</span></a></li>
+                        </ul>
+                  </div>
+                </div>
+              <?php } ?>
               
               <!-- Menu Admin -->
-              <?php } if ($_SESSION['UsuarioNivel'] == '100') { ?>
-              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                <div class="menu_section">
-                    <ul class="nav side-menu">
-                        <li><a href="dashboard-admin"><i class="icon-home icons"></i> <span>Página Inicial</span></a></li> 
-                        <li><a href="members-admin"><i class="icon-people icons"></i> <span>Nossos Membros</span></a></li>  
-                        <li><a href="depositos-admin"><i class="icon-layers icons"></i> <span>Depositos pendentes</span></a></li>   
-                        <li><a href="depositos"><i class="icon-layers icons"></i> <span>Pagamentos Recebidos</span></a></li>     
-                        <li><a href="saques"><i class="icon-refresh icons"></i> <span>Saques Efetuados</span></a></li>                        
-                        <li><a href="meu-plano"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Nosso Financeiro</span></a></li>
-                      </ul>
+              <?php if ($_SESSION['UsuarioNivel'] == '100') { ?>
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                  <div class="menu_section">
+                      <ul class="nav side-menu">
+                          <li><a href="dashboard-admin"><i class="icon-home icons"></i> <span>Página Inicial</span></a></li> 
+                          <li><a href="members-admin"><i class="icon-people icons"></i> <span>Nossos Membros</span></a></li>  
+                          <li><a href="depositos-admin"><i class="icon-layers icons"></i> <span>Depositos pendentes</span></a></li>   
+                          <li><a href="recebidos-admin"><i class="icon-layers icons"></i> <span>Pagamentos Recebidos</span></a></li>     
+                          <li><a href="saques"><i class="icon-refresh icons"></i> <span>Saques Efetuados</span></a></li>                        
+                          <li><a href="meu-plano"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Nosso Financeiro</span></a></li>
+                        </ul>
+                  </div>
                 </div>
-              </div>
               <?php } ?>
               <!-- /sidebar menu -->
             
@@ -193,6 +230,7 @@ $exibirModal = true;
                     <li><a href="includes/sair"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
                   </ul>
                 </li>
+                <!--
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number faa-horizontal" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope faa-horizontal animated"></i>
@@ -245,6 +283,7 @@ $exibirModal = true;
                     </li>
                   </ul>
                 </li> 
+                -->
               </ul>
             </div>
           </div>

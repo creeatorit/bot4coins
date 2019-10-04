@@ -1,3 +1,19 @@
+<?php
+// A sessão precisa ser iniciada em cada página diferente
+if (!isset($_SESSION)) session_start();
+
+$nivel_necessario = 1;
+
+// Verifica se não há a variável da sessão que identifica o usuário
+//if (!isset($_SESSION['UsuarioID']) AND ($_SESSION['UsuarioNivel'] >$nivel_necessario) OR ($_SESSION['UsuarioNivel'] <$nivel_necessario2)) {
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel_necessario)) {
+    // Destrói a sessão por segurança
+    session_destroy();
+    // Redireciona o visitante de volta pro login
+    header("Location: login");
+    exit;
+} ?>
+
 <!-- Chama o cabeçalho e o menu -->
 <?php include("includes/header.php");?>
 
@@ -29,14 +45,16 @@ switch (get_post_action('button_pessoais', 'button_senha', 'button_endereco', 'b
       $email      = $_POST['email'];
       $telefone   = $_POST['telefone'];
 
+      $detalhes_pessoais = '1';
+
       // verifica se usuario preencheu campos obrigatorios
       $validacao = true;
 
       if ($validacao) {
 
-              $sqlpessoais = 'UPDATE usuarios set nome = ?, sobrenome = ?, nascimento = ?, rg = ?, cpf = ?, sexo = ?, email = ?, telefone = ? WHERE id = "' . $_SESSION['UsuarioID'] . '"  ';
+              $sqlpessoais = 'UPDATE usuarios set nome = ?, sobrenome = ?, nascimento = ?, rg = ?, cpf = ?, sexo = ?, email = ?, telefone = ?, detalhes_pessoais = ? WHERE id = "' . $_SESSION['UsuarioID'] . '"  ';
               $q = $pdo->prepare($sqlpessoais);
-              $q->execute(array($nome, $sobrenome, $nascimento, $rg, $cpf, $sexo, $email, $telefone));
+              $q->execute(array($nome, $sobrenome, $nascimento, $rg, $cpf, $sexo, $email, $telefone, $detalhes_pessoais));
               echo "<script>alert('DETALHES PESSOAIS ALTERADOS COM SUCESSO!');</script>";
       }
       break;
@@ -71,14 +89,16 @@ switch (get_post_action('button_pessoais', 'button_senha', 'button_endereco', 'b
         $complemento = 'NENHUM';
       }
 
+      $detalhes_endereco = '1';
+
       $validacao = true;
 
       // começa a SALVAR antes de fechar
       if ($validacao) {
 
-              $sqlendereco = 'UPDATE usuarios set cep = ?, endereco = ?, bairro = ?, numero = ?, complemento = ?, cidade = ?, estado = ?  WHERE id = "' . $_SESSION['UsuarioID'] . '"  ';
+              $sqlendereco = 'UPDATE usuarios set cep = ?, endereco = ?, bairro = ?, numero = ?, complemento = ?, cidade = ?, estado = ?, detalhes_endereco = ?  WHERE id = "' . $_SESSION['UsuarioID'] . '"  ';
               $q = $pdo->prepare($sqlendereco);
-              $q->execute(array($cep, $endereco, $bairro, $numero, $complemento, $cidade, $estado));
+              $q->execute(array($cep, $endereco, $bairro, $numero, $complemento, $cidade, $estado,$detalhes_endereco));
               echo "<script>alert('DADOS DO ENDEREÇO ALTERADO COM SUCESSO!');</script>";
       }
       break;
@@ -90,14 +110,16 @@ switch (get_post_action('button_pessoais', 'button_senha', 'button_endereco', 'b
       $conta      = $_POST['conta'];
       $conta_tipo = $_POST['conta_tipo'];
 
+      $detalhes_banco = '1';
+
       $validacao = true;
 
       // começa a SALVAR antes de fechar
       if ($validacao) {
 
-              $sqlbanco = 'UPDATE usuarios set banco = ?, agencia = ?, conta = ?, conta_tipo = ? WHERE id = "' . $_SESSION['UsuarioID'] . '"  ';
+              $sqlbanco = 'UPDATE usuarios set banco = ?, agencia = ?, conta = ?, conta_tipo = ?, detalhes_banco = ? WHERE id = "' . $_SESSION['UsuarioID'] . '"  ';
               $q = $pdo->prepare($sqlbanco);
-              $q->execute(array($banco, $agencia, $conta, $conta_tipo));
+              $q->execute(array($banco, $agencia, $conta, $conta_tipo, $detalhes_banco));
               echo "<script>alert('DADOS BANCÁRIOS ALTERADOS COM SUCESSO!');</script>";
       }
       break;

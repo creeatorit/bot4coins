@@ -17,11 +17,13 @@
   RewriteRule ^faq/?$ faq.php [NC,L]
   RewriteRule ^includes/sair/?$ includes/logout.php [NC,L]
   RewriteRule ^includes/valida-usuario/?$ includes/validation.php [NC,L]
+  RewriteRule ^sendmail/indicar-amigo?$ sendmail/indicar-amigo.php [NC,L]
   
   # ADMIN
   RewriteRule ^dashboard-admin/?$ dashboard-admin.php [NC,L]
   RewriteRule ^members-admin/?$ members-admin.php [NC,L]
   RewriteRule ^depositos-admin/?$ depositos-admin.php [NC,L]
+  RewriteRule ^recebidos-admin/?$ recebidos-admin.php [NC,L]
   
 
 </IfModule>

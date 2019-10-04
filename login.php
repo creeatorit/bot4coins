@@ -61,7 +61,7 @@ if (count($matches) > 1 && $matches[1] <= 11){
             <form method="post" action="includes/valida-usuario">
               <div class="input--akira">
                 <span class="input input--akira">
-                  <input class="input__field input__field--akira" type="email" name="email" id="email" autocomplete="off" required />
+                  <input class="input__field input__field--akira" type="email" name="email" id="email" autocomplete="off" autofocus required />
                   <label class="input__label input__label--akira" for="input-1">
                     <span class="input__label-content input__label-content--akira">Email</span>
                   </label>
